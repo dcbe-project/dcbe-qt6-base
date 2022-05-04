@@ -1,0 +1,22 @@
+commit 502164ee726a6b1e64558557d24ac1d4b53a6431
+Author: Manuel Traut <manuel.traut@mt.com>
+Date:   Thu Mar 3 17:06:46 2022 +0100
+
+    make missing opengl a warning
+    
+    Change-Id: Ibe63ebf9b3d03611cc374186e4160dd6c3f34397
+    Signed-off-by: Manuel Traut <manuel.traut@mt.com>
+
+diff --git a/src/gui/configure.cmake b/src/gui/configure.cmake
+index 0bf250eab6..5c9d0d543c 100644
+--- a/src/gui/configure.cmake
++++ b/src/gui/configure.cmake
+@@ -1297,7 +1297,7 @@ qt_configure_add_report_entry(
+     CONDITION APPLE AND QT_FEATURE_system_harfbuzz
+ )
+ qt_configure_add_report_entry(
+-    TYPE ERROR
++    TYPE WARNING
+     MESSAGE "The OpenGL functionality tests failed!  You might need to modify the include and library search paths by editing QMAKE_INCDIR_OPENGL[_ES2], QMAKE_LIBDIR_OPENGL[_ES2] and QMAKE_LIBS_OPENGL[_ES2] in the mkspec for your platform."
+     CONDITION QT_FEATURE_gui AND NOT WATCHOS AND ( NOT INPUT_opengl STREQUAL 'no' ) AND NOT QT_FEATURE_opengl_desktop AND NOT QT_FEATURE_opengles2 AND NOT QT_FEATURE_opengl_dynamic
+ )

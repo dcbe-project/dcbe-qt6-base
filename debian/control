@@ -4,34 +4,15 @@ Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Patrick Franz <deltaone@debian.org>
 Build-Depends: cmake (>= 3.18~),
                debhelper-compat (= 13),
-               default-libmysqlclient-dev,
                dh-exec,
-               firebird-dev [kfreebsd-any linux-any],
-               libatspi2.0-dev,
                libb2-dev,
-               libcups2-dev,
                libdbus-1-dev,
                libdouble-conversion-dev,
-               libdrm-dev [linux-any],
                libfontconfig-dev,
                libfreetype-dev,
-               libgbm-dev [linux-any],
-               libgl-dev,
-               libgl1-mesa-dev,
-               libgles-dev,
                libglib2.0-dev,
-               libglu1-mesa-dev | libglu-dev,
-               libgtk-3-dev,
                libharfbuzz-dev,
-               libicu-dev,
-               libinput-dev [linux-any],
                libjpeg-dev,
-               libkrb5-dev,
-               liblttng-ust-dev [linux-any],
-               libmd4c-dev,
-               libmd4c-html0-dev,
-               libmtdev-dev [linux-any],
-               libpcre2-dev,
                libpng-dev,
                libpq-dev,
                libproxy-dev,
@@ -41,32 +22,6 @@ Build-Depends: cmake (>= 3.18~),
                libsystemd-dev [linux-any],
                libts-dev,
                libudev-dev [linux-any],
-               libvulkan-dev [linux-any],
-               libwayland-dev [linux-any],
-               libx11-dev,
-               libx11-xcb-dev,
-               libxcb-glx0-dev,
-               libxcb-icccm4-dev,
-               libxcb-image0-dev,
-               libxcb-keysyms1-dev,
-               libxcb-randr0-dev,
-               libxcb-render-util0-dev,
-               libxcb-render0-dev,
-               libxcb-shape0-dev,
-               libxcb-shm0-dev,
-               libxcb-sync-dev,
-               libxcb-util-dev,
-               libxcb-xfixes0-dev,
-               libxcb-xinerama0-dev,
-               libxcb-xinput-dev,
-               libxcb-xkb-dev,
-               libxcb1-dev,
-               libxext-dev,
-               libxfixes-dev,
-               libxi-dev,
-               libxkbcommon-dev,
-               libxkbcommon-x11-dev,
-               libxrender-dev,
                libzstd-dev,
                ninja-build,
                pkg-config,
@@ -127,7 +82,6 @@ Pre-Depends: ${misc:Pre-Depends}
 Depends: fontconfig, ${misc:Depends}, ${shlibs:Depends}
 Breaks: qt6-qpa-plugins (<< 6.2.4+dfsg-5~)
 Replaces: qt6-qpa-plugins (<< 6.2.4+dfsg-5~)
-Recommends: qt6-gtk-platformtheme
 Description: Qt 6 GUI module
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -146,18 +100,6 @@ Description: Qt 6 EGL plugins
  .
  This package contains QPA-related plugins.
 
-Package: qt6-gtk-platformtheme
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Qt 6 GTK+ 3 platform theme
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- This package provides the GTK+ 3 platform theme, which makes Qt use
- native icon themes, fonts, and dialogs on GTK-based environments.
-
 Package: qt6-xdgdesktopportal-platformtheme
 Architecture: any
 Multi-Arch: same
@@ -169,38 +111,6 @@ Description: Qt 6 XDG Desktop Portal platform theme
  .
  This package provides the XDG Desktop portal platform theme, which makes
  Qt use native file dialogs on Flatpak/Snap based environments.
-
-Package: libqt6opengl6
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Qt 6 OpenGL module
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- The QtOpenGL module offers classes that make it easy to use OpenGL in Qt
- applications.
- .
- OpenGL is a standard API for rendering 3D graphics. OpenGL only deals with 3D
- rendering and provides little or no support for GUI programming issues.
-
-Package: libqt6openglwidgets6
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Qt 6 OpenGL widgets module
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- The QtOpenGL module offers classes that make it easy to use OpenGL in Qt
- applications.
- .
- OpenGL is a standard API for rendering 3D graphics. OpenGL only deals with 3D
- rendering and provides little or no support for GUI programming issues.
- .
- The OpenGL widgets module provides the widget for rendering OpenGL graphics.
 
 Package: libqt6network6
 Architecture: any
@@ -228,17 +138,6 @@ Description: Qt 6 SQL module
  .
  The QtSql module helps you provide seamless database integration to your Qt
  applications.
-
-Package: libqt6sql6-mysql
-Architecture: any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Qt 6 MySQL database driver
- This package contains the MySQL plugin for Qt 6.
- .
- Install it if you intend to use or write Qt programs that are to access a
- MySQL DB.
 
 Package: libqt6sql6-odbc
 Architecture: any
@@ -272,17 +171,6 @@ Description: Qt 6 SQLite 3 database driver
  .
  Install it if you intend to use or write Qt programs that are to access an
  SQLite 3 DB.
-
-Package: libqt6sql6-ibase
-Architecture: kfreebsd-any linux-any
-Multi-Arch: same
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Qt 6 Firebird database driver
- This package contains the Firebird plugin for Qt 6.
- .
- Install it if you intend to use or write Qt programs that are to access a
- Firebird/InterBase DB.
 
 Package: libqt6test6
 Architecture: any
@@ -336,15 +224,11 @@ Package: qt6-base-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libgl-dev,
-         libglx-dev,
-         libopengl-dev,
-         libqt6concurrent6 (= ${binary:Version}),
+Depends: libqt6concurrent6 (= ${binary:Version}),
          libqt6core6 (= ${binary:Version}),
          libqt6dbus6 (= ${binary:Version}),
          libqt6gui6 (= ${binary:Version}),
          libqt6network6 (= ${binary:Version}),
-         libqt6openglwidgets6 (= ${binary:Version}),
          libqt6printsupport6 (= ${binary:Version}),
          libqt6sql6 (= ${binary:Version}),
          libqt6test6 (= ${binary:Version}),
@@ -354,7 +238,6 @@ Depends: libgl-dev,
          qt6-base-dev-tools (= ${binary:Version}),
          qt6-qpa-plugins (= ${binary:Version}),
          ${misc:Depends},
-Recommends: libqt6opengl6-dev (= ${binary:Version})
 Description: Qt 6 base development files
  Qt is a cross-platform C++ application framework. Qt's primary feature
  is its rich set of widgets that provide standard GUI functionality.
@@ -370,8 +253,6 @@ Architecture: any
 Multi-Arch: same
 Section: libdevel
 Depends: libfontconfig-dev,
-         libinput-dev [linux-any],
-         libxkbcommon-dev,
          qt6-base-dev (= ${binary:Version}),
          ${misc:Depends},
 Description: Qt 6 base private development files
@@ -401,20 +282,6 @@ Description: Qt 6 base development programs
  .
  We do not recommend depending on this package directly. Please depend
  on qt6-base-dev instead.
-
-Package: libqt6opengl6-dev
-Architecture: any
-Multi-Arch: same
-Section: libdevel
-Depends: libqt6opengl6 (= ${binary:Version}),
-         qt6-base-dev (= ${binary:Version}),
-         ${misc:Depends},
-Description: Qt 6 OpenGL library development files
- Qt is a cross-platform C++ application framework. Qt's primary feature
- is its rich set of widgets that provide standard GUI functionality.
- .
- This package contains the development files needed to build Qt 6 applications
- using the QtOpenGL library.
 
 Package: qmake6-bin
 Architecture: any

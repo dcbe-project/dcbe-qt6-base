@@ -11,3 +11,6 @@ upstream_QFileSystemEngine-canonicalName-Unix-clean-up-contro.patch
 # Debian specific
 remove_privacy_breaches.diff
 build_path_embedded_qtbuildinternalsextra_cmake.patch
+
+# Mettler Toledo specific
+mt_Make-missing-opengl-a-warning.patch

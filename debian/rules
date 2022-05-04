@@ -7,18 +7,6 @@ include /usr/share/dpkg/architecture.mk
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 sslpkgname := $(shell dpkg-query --show '--showformat=$${Depends}' libssl-dev | cut -d ' ' -f1)
 
-ifneq (,$(filter libqt6sql6-ibase,$(shell dh_listpackages)))
-        extra_cmake_args += -DFEATURE_sql_ibase=ON
-else
-        extra_cmake_args += -DFEATURE_sql_ibase=OFF
-endif
-
-ifeq ($(DEB_HOST_ARCH_OS),linux)
-        extra_cmake_args += -DFEATURE_sctp=ON
-else
-        extra_cmake_args += -DFEATURE_sctp=OFF
-endif
-
 %:
 	dh $@ --with pkgkde_symbolshelper --buildsystem=cmake+ninja
 
@@ -41,36 +29,19 @@ override_dh_auto_configure:
 		-DINSTALL_TRANSLATIONDIR=share/qt6/translations \
 		-DINSTALL_MKSPECSDIR=lib/$(DEB_HOST_MULTIARCH)/qt6/mkspecs \
 		-DINSTALL_PUBLICBINDIR=bin \
-		-DBUILD_EXAMPLES=ON \
+		-DBUILD_EXAMPLES=OFF \
+		-DQT_QPA_DEFAULT_PLATFORM=linuxfb \
 		-DFEATURE_mimetype_database=OFF \
-		-DFEATURE_dbus_linked=ON \
-		-DFEATURE_accessibility=ON \
-		-DFEATURE_doubleconversion=ON \
-		-DFEATURE_glib=ON \
-		-DFEATURE_icu=ON \
-		-DFEATURE_pcre2=ON \
-		-DFEATURE_system_pcre2=ON \
-		-DFEATURE_zlib=ON \
-		-DFEATURE_ssl=ON \
-		-DFEATURE_libproxy=ON \
-		-DFEATURE_system_proxies=ON \
-		-DFEATURE_cups=ON \
-		-DFEATURE_fontconfig=ON \
-		-DFEATURE_freetype=ON \
-		-DFEATURE_harfbuzz=ON \
-		-DFEATURE_gtk=ON \
 		-DFEATURE_directfb=OFF \
-		-DFEATURE_sql_odbc=ON \
-		-DFEATURE_sql_mysql=ON \
-		-DFEATURE_sql_psql=ON \
-		-DFEATURE_sql_sqlite=ON \
-		-DFEATURE_system_sqlite=ON \
-		-DFEATURE_jpeg=ON \
-		-DFEATURE_system_jpeg=ON \
-		-DFEATURE_png=ON \
-		-DFEATURE_system_png=ON \
-		-DFEATURE_system_libb2=ON \
-		-DFEATURE_rpath=OFF \
+		-DFEATURE_dynamicgl=OFF \
+		-DFEATURE_eglfs=OFF \
+		-DFEATURE_egl=OFF \
+		-DFEATURE_gbm=OFF \
+		-DFEATURE_opengles2=OFF \
+		-DFEATURE_kms=OFF \
+		-DFEATURE_opengl=OFF \
+		-DFEATURE_xcb=OFF \
+		-DCMAKE_BUILD_RPATH_USE_ORIGIN=ON \
 		$(extra_cmake_args)
 
 
@@ -86,9 +57,6 @@ execute_after_dh_auto_install:
 	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt6
 	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/' debian/qt.conf.in \
 		> debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt6/qt6.conf
-
-override_dh_makeshlibs:
-	dh_makeshlibs -XlibQt6EglFSDeviceIntegration -XlibQt6EglFsKmsGbmSupport -XlibQt6EglFsKmsSupport -XlibQt6XcbQpa
 
 execute_after_dh_shlibdeps-arch:
 	echo libssl:Depends=$(sslpkgname) >> debian/libqt6network6.substvars
